@@ -24,3 +24,9 @@ def count_freq_plot(df, col,name, want_percentages = False):
             ax.text(p.get_x()+p.get_width()/2., height + 3,'{:1.2%}'.format(height/total),ha="center") 
 
         plt.show()
+
+def normalizad_features(x):
+    '''Nornalized features '''
+    for col in x.columns:
+        x[col] = (x[col]-min(x[col]))/ (max(x[col]) - min(x[col]))
+    return x.head()
