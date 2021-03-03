@@ -1,6 +1,14 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from imblearn.over_sampling import RandomOverSampler
+from sklearn.metrics import precision_score, recall_score, accuracy_score, f1_score, confusion_matrix
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report, confusion_matrix
+from sklearn import metrics
+import xgboost as xgb
+from sklearn.model_selection import GridSearchCV
 
 def value__counts(df_):
     '''it takes a df and return value_counts for all the features'''
@@ -30,3 +38,40 @@ def normalizad_features(x):
     for col in x.columns:
         x[col] = (x[col]-min(x[col]))/ (max(x[col]) - min(x[col]))
     return x.head()
+
+
+def split (independent_va, dependent_va):
+    """ return train, val, test set will be 60%, 20%, 20% of the dataset respectively"""
+    X_train, X_test, y_train, y_test = train_test_split( independent_va , dependent_va, test_size=0.2, random_state=1)
+    X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.25, random_state=1)
+    return X_train, y_train, X_test, y_test, X_val, y_val
+
+
+def classifier_modeling (clf, x_tr, y_tr, x_vali):
+    """ return model and prediction value"""
+    clf1 = clf # create the model
+    model_1 = clf1.fit(x_tr, y_tr)
+    y_pred = clf1.predict(x_vali)# make a prediction
+    return model_1, y_pred
+    
+
+def metrix_classifier(x , y):
+    """ calculated the accuracy and print out accuracy and classification report"""
+    accuracy = round(metrics.accuracy_score(x, y) * 100 ,2)
+    print(f"Accuracy: {accuracy} %")
+    precision,recall,fscore,support = metrics.precision_recall_fscore_support(x,y, average = 'weighted')
+    print('Precision_weighted: ', str(round(precision*100,2)),"%")
+    print('Recall_weighted: ', round(recall *100, 2),"%")
+    print('fscore_weightted: ', round(fscore* 100, 2),"%")
+    print(classification_report(x,  y))
+    
+
+def confusion_m(x,y,classifier):
+    """ it plots a confusion matrix """
+    cm = confusion_matrix(x, y)
+    ax= plt.subplot()
+    sns.heatmap(cm, annot=True, ax = ax)
+    ax.set_xlabel('Predicted labels');ax.set_ylabel('True labels') 
+    ax.set_title('Confusion Matrix ' + classifier)
+    ax.xaxis.set_ticklabels(['No_buy', 'Buy']); ax.yaxis.set_ticklabels(['No_buy', 'Buy'])
+
