@@ -75,3 +75,18 @@ def confusion_m(x,y,classifier):
     ax.set_title('Confusion Matrix ' + classifier)
     ax.xaxis.set_ticklabels(['No_buy', 'Buy']); ax.yaxis.set_ticklabels(['No_buy', 'Buy'])
 
+    
+def tune_parameters_clf( model, n, **kwargs):
+    " return the best parameteres for the model and the prediction value"
+
+    grid_clf = GridSearchCV(model, param_grid_1, scoring='accuracy', cv=n, n_jobs=1)
+    grid_clf.fit(X_train, y_train)
+
+    best_parameters = grid_clf.best_params_
+
+    print("Grid Search found the following optimal parameters: ")
+    for param_name in sorted(best_parameters.keys()):
+        print("%s: %r" % (param_name, best_parameters[param_name]))
+    val_preds = grid_clf.predict(X_val)
+    return val_preds
+
