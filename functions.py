@@ -76,8 +76,8 @@ def confusion_m(x,y,classifier):
     ax.xaxis.set_ticklabels(['No_buy', 'Buy']); ax.yaxis.set_ticklabels(['No_buy', 'Buy'])
 
     
-def tune_parameters_clf( model, n, **kwargs):
-    " return the best parameteres for the model and the prediction value"
+def tune_parameters_clf( model, n, X_train, y_train, X_val, param_grid_1={}):
+    " return the best parameteres for the model and the prediction value" 
 
     grid_clf = GridSearchCV(model, param_grid_1, scoring='accuracy', cv=n, n_jobs=1)
     grid_clf.fit(X_train, y_train)
