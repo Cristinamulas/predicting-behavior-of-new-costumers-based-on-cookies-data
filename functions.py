@@ -17,14 +17,16 @@ def value__counts(df_):
         print(df_[i].value_counts())
         
         
-def count_freq_plot(df, col,name, want_percentages = False):
-    """it retuns a bar plot with the percentages or w/o percentages"""
+def count_freq_plot(df, col,name, title_name, want_percentages = False):
+    """it retuns a bar plot with the percentages """
     
     sns.set(style="darkgrid")
     plt.figure(figsize=(8,6))
     total = float(len(df)) 
     ax = sns.countplot(x=col, data=df, dodge =False) # for Seaborn version 0.7 and more
-    ax.set(xlabel=col, title= f'Count Frequency: Positive {name} vs Negative {name} ')
+#     ax.set(xlabel=col, title= f'Count Frequency: Positive {name} vs Negative {name} ')
+    ax.set(xlabel=col, title= title_name)
+
 
 
     if want_percentages == True:
