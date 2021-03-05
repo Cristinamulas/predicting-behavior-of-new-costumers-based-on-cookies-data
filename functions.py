@@ -15,7 +15,25 @@ def value__counts(df_):
     """it takes a df and return value_counts for all the features"""
     for i in df_.columns:
         print(df_[i].value_counts())
-        
+
+def remove_outliers(df, cols):
+    ''' takes in df and cols we want to remove outliers from
+    and returns a cleaned df'''
+    pd_copy = pd.DataFrame(df, copy=True)
+    for col in cols:
+        try:
+            q1 = df[col].quantile(0.25)
+            q3 = df[col].quantile(0.75)
+            iqr = q3-q1 #Interquartile range
+            fence_low  = q1-1.5*iqr
+            fence_high = q3+1.5*iqr
+            pd_copy.loc[(pd_copy[col] < fence_low) | (pd_copy[col] > fence_high),col] = 0.0
+            df = pd_copy
+
+        except:
+            pd_copy[col] == df[col]
+
+    return df
         
 def count_freq_plot(df, col,name, title_name, want_percentages = False):
     """it retuns a bar plot with the percentages """
