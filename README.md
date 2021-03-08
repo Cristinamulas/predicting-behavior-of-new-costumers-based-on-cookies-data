@@ -27,19 +27,19 @@ The target feature is a binary variable encoded as 0 if they didn't purchase the
 
 Questions that I answered while exploring the database:
 
-How many users bought the product in the past?
+### How many users bought the product in the past?
 
 <img width="494" alt="Screen Shot 2021-03-04 at 4 26 48 PM" src="https://user-images.githubusercontent.com/43222117/110340417-3e12c800-7ff7-11eb-9647-b13338110455.png">
 
 - The majority of the users didn't buy the product in the past.
-Who visits the website more often, new or old users?
+### Who visits the website more often, new or old users?
 
 
-- <img width="826" alt="Screen Shot 2021-03-05 at 4 30 16 PM" src="https://user-images.githubusercontent.com/43222117/110340496-57b40f80-7ff7-11eb-91d1-5356daeab6aa.png">
+<img width="826" alt="Screen Shot 2021-03-05 at 4 30 16 PM" src="https://user-images.githubusercontent.com/43222117/110340496-57b40f80-7ff7-11eb-91d1-5356daeab6aa.png">
 
 - Buyers that purchased the product in the past visited the website more often.
 
-Which users browse around the website more often, new or old users?
+### Which users browse around the website more often, new or old users?
 
 <img width="842" alt="Screen Shot 2021-03-05 at 7 33 36 PM" src="https://user-images.githubusercontent.com/43222117/110340645-79ad9200-7ff7-11eb-90ea-c7e3e3f50863.png">
 
