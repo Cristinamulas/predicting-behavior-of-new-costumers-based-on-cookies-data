@@ -71,6 +71,9 @@ I knew that the accuracy of these models could improve so I tuned the parameters
 
 ### The most important features of XGBoost
 
+<img width="938" alt="Screen Shot 2021-03-05 at 3 51 27 PM" src="https://user-images.githubusercontent.com/43222117/110341578-78c93000-7ff8-11eb-9e2a-cae57d576e1f.png">
+
+
 
 
 
